@@ -1,0 +1,698 @@
+/* Base Styles */
+:root {
+  --primary-color: #1e88e5;
+  --primary-dark: #1565c0;
+  --secondary-color: #ff5722;
+  --text-color: #333;
+  --light-text: #666;
+  --lighter-text: #999;
+  --bg-color: rgba(245, 245, 245, 0.85);
+  --card-bg: rgba(255, 255, 255, 0.95);
+  --border-color: #e0e0e0;
+  --success-color: #4caf50;
+  --error-color: #f44336;
+  --team1-color: #1e88e5;
+  --team2-color: #ff5722;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  color: var(--text-color);
+  background-image: url("background.png");
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  position: relative;
+  min-height: 100vh;
+}
+
+body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: -1;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Header */
+header {
+  background-color: rgba(30, 136, 229, 0.9);
+  color: white;
+  padding: 1rem 0;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  position: relative;
+  z-index: 10;
+}
+
+header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+#username-display {
+  font-weight: 500;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Buttons */
+.btn {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  background-color: #e0e0e0;
+  color: var(--text-color);
+  display: inline-block;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.btn:hover {
+  background-color: #d0d0d0;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.btn:active {
+  transform: translateY(1px);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-dark);
+}
+
+.btn-icon {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+}
+
+.floating-btn {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  font-weight: bold;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  z-index: 100;
+}
+
+.floating-btn .btn-text {
+  display: block;
+  line-height: 1;
+  text-align: center;
+}
+
+/* Sections */
+.section {
+  padding: 2rem 0;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* Cards */
+.card {
+  background-color: var(--card-bg);
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* Forms */
+.form-group {
+  margin-bottom: 1.2rem;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 6px;
+  font-size: 1rem;
+  background-color: rgba(255, 255, 255, 0.9);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(30, 136, 229, 0.2);
+}
+
+textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+/* Tabs */
+.tabs {
+  display: flex;
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 1.5rem;
+}
+
+.tab-btn {
+  padding: 0.75rem 1.5rem;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--light-text);
+  transition: all 0.2s ease;
+}
+
+.tab-btn:hover {
+  color: var(--primary-color);
+}
+
+.tab-btn.active {
+  color: var(--primary-color);
+  border-bottom-color: var(--primary-color);
+}
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+/* Dashboard */
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  color: white;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.dashboard-header h2 {
+  font-size: 1.8rem;
+}
+
+.online-users {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: rgba(0, 0, 0, 0.3);
+  padding: 0.5rem 1rem;
+  border-radius: 30px;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
+.user-bubbles {
+  display: flex;
+}
+
+.user-bubble {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: var(--primary-color);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  margin-left: -8px;
+  border: 2px solid white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Games Grid */
+.games-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.game-card {
+  background-color: var(--card-bg);
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.game-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
+}
+
+.game-card-header {
+  padding: 1rem;
+  background-color: rgba(249, 249, 249, 0.9);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.sport-tag {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  background-color: var(--primary-color);
+  color: white;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.game-status {
+  float: right;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.status-upcoming {
+  background-color: #e0e0e0;
+  color: var(--text-color);
+}
+
+.status-live {
+  background-color: var(--error-color);
+  color: white;
+  animation: pulse 2s infinite;
+}
+
+.status-finished {
+  background-color: var(--success-color);
+  color: white;
+}
+
+.game-card-body {
+  padding: 1.2rem;
+}
+
+.teams-display {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.team-name {
+  font-weight: 600;
+  max-width: 40%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.vs {
+  font-weight: bold;
+  color: var(--lighter-text);
+  font-size: 1.2rem;
+}
+
+.game-meta {
+  color: var(--light-text);
+  font-size: 0.9rem;
+  background-color: rgba(0, 0, 0, 0.05);
+  padding: 0.5rem;
+  border-radius: 6px;
+  text-align: center;
+}
+
+/* Game Details */
+.game-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.teams {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.team {
+  text-align: center;
+  flex: 1;
+}
+
+.score {
+  font-size: 3.5rem;
+  font-weight: bold;
+  margin: 1rem 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.team1 .score {
+  color: var(--team1-color);
+}
+
+.team2 .score {
+  color: var(--team2-color);
+}
+
+.vote-btn {
+  padding: 0.5rem 1.5rem;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.vote-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.vote-btn:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.team1 .vote-btn {
+  background-color: var(--team1-color);
+  color: white;
+}
+
+.team2 .vote-btn {
+  background-color: var(--team2-color);
+  color: white;
+}
+
+.game-meta {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 2rem;
+  padding: 1.2rem;
+  background-color: rgba(249, 249, 249, 0.9);
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.meta-item {
+  text-align: center;
+}
+
+.label {
+  display: block;
+  color: var(--light-text);
+  font-size: 0.9rem;
+  margin-bottom: 0.25rem;
+  font-weight: 600;
+}
+
+.voting-stats {
+  margin-bottom: 2rem;
+}
+
+.voting-stats h4 {
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  color: var(--text-color);
+}
+
+.vote-bar {
+  margin-top: 1rem;
+}
+
+.vote-progress {
+  height: 24px;
+  background-color: rgba(240, 240, 240, 0.8);
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.vote-fill {
+  height: 100%;
+  transition: width 0.5s;
+}
+
+.team1-color {
+  background-color: var(--team1-color);
+}
+
+.vote-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+  font-weight: 600;
+}
+
+.live-updates {
+  margin-bottom: 2rem;
+}
+
+.live-updates h4 {
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  color: var(--text-color);
+}
+
+.updates-list {
+  max-height: 300px;
+  overflow-y: auto;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  padding: 1rem;
+  background-color: rgba(255, 255, 255, 0.9);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.update-item {
+  padding: 0.75rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.update-item:last-child {
+  border-bottom: none;
+}
+
+.update-time {
+  font-size: 0.8rem;
+  color: var(--lighter-text);
+  margin-top: 0.25rem;
+}
+
+.admin-controls {
+  background-color: rgba(249, 249, 249, 0.9);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.admin-controls h4 {
+  margin-bottom: 1.2rem;
+  font-size: 1.2rem;
+  color: var(--text-color);
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 0.5rem;
+}
+
+.score-controls,
+.status-controls,
+.update-controls {
+  margin-bottom: 1.5rem;
+}
+
+.score-controls {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-end;
+}
+
+.team-score {
+  flex: 1;
+}
+
+/* Notification */
+.notification {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  background-color: var(--success-color);
+  color: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  transition: transform 0.3s, opacity 0.3s;
+  transform: translateY(-20px);
+  opacity: 0;
+  font-weight: 500;
+}
+
+.notification.show {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.notification.error {
+  background-color: var(--error-color);
+}
+
+/* Loading */
+.loading-spinner {
+  text-align: center;
+  padding: 2rem;
+  color: white;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  font-size: 1.2rem;
+}
+
+/* Animations */
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .games-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .teams {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .vs {
+    margin: 1rem 0;
+  }
+
+  .game-meta {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .score-controls {
+    flex-direction: column;
+  }
+
+  .floating-btn {
+    bottom: 1rem;
+    right: 1rem;
+  }
+}
+
+.btn-danger {
+  background-color: var(--error-color);
+  color: white;
+}
+
+.btn-danger:hover {
+  background-color: #d32f2f;
+}
+
+.admin-header-controls {
+  margin-bottom: 1.5rem;
+}
+
+/* Ensure the login/logout buttons are fully clickable */
+#login-btn,
+#logout-btn {
+  display: inline-block;
+  width: auto;
+  min-width: 80px;
+  text-align: center;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  background-color: white;
+  color: var(--primary-color);
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  border: none;
+}
+
+#login-btn:hover,
+#logout-btn:hover {
+  background-color: #f5f5f5;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}

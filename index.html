@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SportSync</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>SportSync</h1>
+            <div class="user-info">
+                <span id="username-display">Guest</span>
+                <button id="login-btn" class="btn">Login</button>
+                <button id="logout-btn" class="btn hidden">Logout</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Login/Register Form -->
+        <section id="auth-section" class="section hidden">
+            <div class="card">
+                <div class="tabs">
+                    <button class="tab-btn active" data-tab="login">Login</button>
+                    <button class="tab-btn" data-tab="register">Register</button>
+                </div>
+                
+                <div id="login-form" class="tab-content active">
+                    <h2>Login</h2>
+                    <form id="login-form-element">
+                        <div class="form-group">
+                            <label for="login-username">Username</label>
+                            <input type="text" id="login-username" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="login-password">Password</label>
+                            <input type="password" id="login-password" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Login</button>
+                    </form>
+                </div>
+                
+                <div id="register-form" class="tab-content">
+                    <h2>Register</h2>
+                    <form id="register-form-element">
+                        <div class="form-group">
+                            <label for="register-username">Username</label>
+                            <input type="text" id="register-username" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="register-password">Password</label>
+                            <input type="password" id="register-password" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="register-confirm-password">Confirm Password</label>
+                            <input type="password" id="register-confirm-password" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Register</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dashboard -->
+        <section id="dashboard-section" class="section">
+            <div class="dashboard-header">
+                <h2>Live Games</h2>
+                <div class="online-users">
+                    <span>Online Users: </span>
+                    <span id="online-count">0</span>
+                    <div id="online-users-list" class="user-bubbles"></div>
+                </div>
+            </div>
+
+            <div class="games-container">
+                <div id="games-list" class="games-grid">
+                    <!-- Games will be loaded here -->
+                    <div class="loading-spinner">Loading games...</div>
+                </div>
+            </div>
+
+            <button id="add-game-btn" class="btn btn-primary floating-btn">
+                <span class="btn-text">Add Game</span>
+            </button>
+        </section>
+
+        <!-- Add Game Form -->
+        <section id="add-game-section" class="section hidden">
+            <div class="card">
+                <h2>Add New Game</h2>
+                <form id="add-game-form">
+                    <div class="form-group">
+                        <label for="sport-type">Sport</label>
+                        <select id="sport-type" required>
+                            <option value="football">Football</option>
+                            <option value="basketball">Basketball</option>
+                            <option value="tennis">Tennis</option>
+                            <option value="hockey">Hockey</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="team1">Team 1</label>
+                        <input type="text" id="team1" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="team2">Team 2</label>
+                        <input type="text" id="team2" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="game-time">Game Time</label>
+                        <input type="datetime-local" id="game-time" required>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" id="cancel-add-game" class="btn">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Add Game</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- Game Details -->
+        <section id="game-details-section" class="section hidden">
+            <div class="card">
+                <div class="game-header">
+                    <button id="back-to-games" class="btn btn-icon">← Back</button>
+                    <h2 id="game-title">Game Details</h2>
+                </div>
+                
+                <div id="admin-header-controls" class="admin-header-controls hidden">
+                    <button id="delete-game-btn" class="btn btn-danger">Delete Game</button>
+                </div>
+
+                <div class="game-details">
+                    <div class="teams">
+                        <div class="team team1">
+                            <h3 id="detail-team1">Team 1</h3>
+                            <div class="score" id="score1">0</div>
+                            <button class="vote-btn" data-team="1">Vote</button>
+                        </div>
+                        <div class="vs">VS</div>
+                        <div class="team team2">
+                            <h3 id="detail-team2">Team 2</h3>
+                            <div class="score" id="score2">0</div>
+                            <button class="vote-btn" data-team="2">Vote</button>
+                        </div>
+                    </div>
+                    
+                    <div class="game-meta">
+                        <div class="meta-item">
+                            <span class="label">Sport:</span>
+                            <span id="detail-sport">Football</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="label">Time:</span>
+                            <span id="detail-time">12:00 PM</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="label">Status:</span>
+                            <span id="detail-status">Upcoming</span>
+                        </div>
+                    </div>
+                    
+                    <div class="voting-stats">
+                        <h4>Fan Predictions</h4>
+                        <div class="vote-bar">
+                            <div class="vote-progress">
+                                <div id="team1-votes" class="vote-fill team1-color" style="width: 50%"></div>
+                            </div>
+                            <div class="vote-labels">
+                                <span id="team1-vote-percent">50%</span>
+                                <span id="team2-vote-percent">50%</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="live-updates">
+                        <h4>Live Updates</h4>
+                        <div id="updates-container" class="updates-list">
+                            <!-- Updates will be loaded here -->
+                        </div>
+                    </div>
+                    
+                    <div id="admin-controls" class="admin-controls hidden">
+                        <h4>Admin Controls</h4>
+                        <div class="score-controls">
+                            <div class="team-score">
+                                <label for="update-score1">Team 1 Score</label>
+                                <input type="number" id="update-score1" min="0" value="0">
+                            </div>
+                            <div class="team-score">
+                                <label for="update-score2">Team 2 Score</label>
+                                <input type="number" id="update-score2" min="0" value="0">
+                            </div>
+                            <button id="update-score-btn" class="btn btn-primary">Update Score</button>
+                        </div>
+                        <div class="status-controls">
+                            <label for="game-status">Game Status</label>
+                            <select id="game-status">
+                                <option value="upcoming">Upcoming</option>
+                                <option value="live">Live</option>
+                                <option value="finished">Finished</option>
+                            </select>
+                            <button id="update-status-btn" class="btn btn-primary">Update Status</button>
+                        </div>
+                        <div class="update-controls">
+                            <label for="add-update">Add Update</label>
+                            <textarea id="add-update" placeholder="Add a game update..."></textarea>
+                            <button id="add-update-btn" class="btn btn-primary">Post Update</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="notification" class="notification hidden"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
